@@ -1,0 +1,42 @@
+# Stock Portfolio Tracker
+
+# Hard-coded stock prices
+stock_prices = {
+    "AAPL": 180,
+    "TSLA": 250,
+    "GOOGL": 140,
+    "MSFT": 320
+}
+
+print("Available Stocks:")
+for stock, price in stock_prices.items():
+    print(f"{stock} : ${price}")
+
+# User input
+stock_name = input("\nEnter stock name: ").upper()
+quantity = int(input("Enter quantity: "))
+
+# Check if stock exists
+if stock_name in stock_prices:
+    price = stock_prices[stock_name]
+    total_investment = price * quantity
+
+    print("\n----- Investment Summary -----")
+    print("Stock:", stock_name)
+    print("Price per Share: $", price)
+    print("Quantity:", quantity)
+    print("Total Investment: $", total_investment)
+
+    # Save result to a text file
+    with open("portfolio_report.txt", "w") as file:
+        file.write("Stock Portfolio Report\n")
+        file.write("----------------------\n")
+        file.write(f"Stock: {stock_name}\n")
+        file.write(f"Price per Share: ${price}\n")
+        file.write(f"Quantity: {quantity}\n")
+        file.write(f"Total Investment: ${total_investment}\n")
+
+    print("\nReport saved as 'portfolio_report.txt'")
+
+else:
+    print("Stock not found in the portfolio.")
